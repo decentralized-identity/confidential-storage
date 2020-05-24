@@ -98,7 +98,7 @@ is completely hidden from a service provider.
 
 # ​2.​ Focal Use Cases
 
-
+Would it make sense to try and distill a Focal Use Case from Adrian Gropper's [Covid Use Case document](https://github.com/agropper/secure-data-store/blob/master/COVID-19_Health_Report_Use_Case.md)?  I'm happy to take a crack at the distillation into a first draft if I get confirmation that it's not wasted effort. I think it might be productive to double-check that the functional requirements 1.3 & 1.9, as well as the technical requirements of 3.2, make sense across a change of SDS provider.
 
 # ​X.​ Deployment topologies
 
