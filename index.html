@@ -248,65 +248,8 @@ Use Cases
         </h3>
 
         <p class="issue">
-These should be in a USE-CASES document.
+There should be a link here to the distinct USE-CASES document.
         </p>
-
-        <p>
-The following four use cases have been identified as representative of
-common usage patterns (though are by no means the only ones).
-        </p>
-
-        <section>
-          <h4>
-Store and use data
-          </h4>
-          <p>
-I want to store my data in a safe location. I don't want the
-storage provider to be able to see any data I store. This means that
-only I can see and use the data.
-          </p>
-        </section>
-
-        <section>
-          <h4>
-Search data
-          </h4>
-          <p>
-Over time, I will store a large amount of data. I want to search the data,
-but don't want the service provider to know what I'm storing or searching for.
-          </p>
-        </section>
-
-        <section>
-          <h4>
-Share data with one or more entities
-          </h4>
-          <p>
-I want to share my data with other people and services. I can decide on giving
-other entities access to data in my storage area when I save the data for the
-first time or in a later stage. The storage should only give access to others
-when I have explicitly given consent for each item.
-          </p>
-          <p>
-I want to be able to revoke the access of others at any time. When sharing data,
-I can include an expiration date for the access to my data by a third-party.
-          </p>
-        </section>
-
-        <section>
-          <h4>
-Store the same data in more than one place
-          </h4>
-          <p>
-I want to backup my data across multiple storage locations in case one fails.
-These locations can be hosted by different storage providers and can be
-accessible over different protocols. One location could be local on my phone,
-while another might be cloud-based. The locations should be able to synchronize
-between each other so data is up to date in both places regardless of how I
-create or update data, and this should happen automatically and without my help
-as much as possible.
-          </p>
-        </section>
 
         <section>
           <h4>
@@ -317,25 +260,21 @@ Based on the use cases, we consider the following deployment topologies:
           </p>
           <ul>
             <li>
-<strong>Mobile Device Only:</strong> The server and the client reside on the same device.
-The vault is a library providing functionality via a binary API, using local
-storage to provide an encrypted database.
+<strong>Mobile Device Only:</strong> The server and the client reside on the same device. The vault is a library providing functionality via a binary API, using local storage to provide an encrypted database.
             </li>
             <li>
-<strong>Mobile Device Plus Cloud Storage:</strong> A mobile device plays the role of a
-client, and the server is a remote cloud-based service provider that has
-exposed the storage via a network-based API (eg. REST over HTTPS). Data is
-not stored on the mobile device.
+<strong>Mobile Device Plus Cloud Storage:</strong>A mobile device plays the role of a client, and the server is a remote cloud-based service provider that has exposed the storage via a network-based API (eg. REST over HTTPS). Data is not stored on the mobile device.
             </li>
             <li>
-<strong>Multiple Devices (Single User) Plus Cloud Storage:</strong> When adding more
-devices managed by a single user, the vault can be used to synchronize data
-across devices.
+<strong>Multiple Devices (Single User) Plus Cloud Storage:</strong> When adding more devices managed by a single user, the vault can be used to synchronize data across devices.
             </li>
             <li>
-<strong>Multiple Devices (Multiple Users) Plus Cloud Storage:</strong> When pairing
-multiple users with cloud storage, the vault can be used to synchronize data
-between multiple users with the help of replication and merge strategies.
+<strong>Multiple Devices (Multiple Users) Plus Cloud Storage:</strong>  When pairing multiple users with cloud storage, the vault can be used to synchronize data between multiple users with the help of replication and merge strategies.
+            </li>
+            <li>
+<strong>Multi-/Cross-cloud:</strong> Some use cases (IoT / machine to machine / Skynet / guardianship ) require a non-human or non-functioning actor to delegate KMS/key control to a cloud vault for oversight or human intervention. In the case of some Password manager use case architectures or biometrically accessed/deployed key material storage, as well as some multi-cloud/hybrid-cloud architectures, key material will need to be retrieved from at least one other vault before accessing the vault being specified here.<br><br>
+
+Keys in control of such an entity might still need to securely store signed credentials or data in a separate vault. Additional diagramming or specifications will be needed to show how this 2-vault solution could be constrained to be secure and feasible, even if non-normative.
             </li>
           </ul>
         </section>
