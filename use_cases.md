@@ -117,15 +117,11 @@ Each jurisdiction is different, but Alice is American and Bob works for an Ameri
 
 ## 2.1.3 Opening a New Safe Deposit Box
 
-Bank customer Alice has some valuable digital assets (cryptokitty private keys) that she wants securely put into bank custody. She needs to know that the bank cannot access them in clear text. Bank manager Bob will be helping her set up her digital "safe deposit box". Alice needs to give access to her wife Carroll. 
-
-[optional part 2] Special Agent Dave has a warrant to sieze those assets because she has proven Alice's cryptokitties are accomplices to acts of terrorism.
-
-Alice authenticates herself (with KYC) and signs an agreement for her custodial service, which includes assuming costs for key rotations/replacements. Alice also delegates access to Carroll, who is also authenticated and KYCed before receiving access as well. 
+Bank customer Alice has some valuable digital assets (already-encrypted files containing blueprints for a missile) that she wants securely put into bank custody. She needs to know that the bank cannot access them in clear text. Bank manager Bob will be helping her set up her digital "safe deposit box". Alice needs to give access to her wife Carroll. Alice authenticates herself (with KYC) and signs an agreement for her custodial service, which includes assuming costs for key rotations/replacements. Alice also delegates access to Carroll, who is also authenticated and KYCed before receiving access as well. 
 
 ### 2.1.4 Routine Access
 
-Once a month, Caroll checks out the contents out for an hour, sometimes adding or subtracting items. Each time, she has to be authenticated. These events are timestamped and logged but otherwise privacy rights are preserved.
+Once a month, Caroll checks out the contents out for an hour, decrypts them, sometimes adds or subtracts content before re-encrypting and filing them back in storage. Each time, she has to be authenticated. These events are timestamped and logged but otherwise privacy rights are preserved. There may be other restrictions on access in the contract, by analogy to real-world safe deposit boxes [1], or arbitrary frictions or delay having to do with relevant banking regulations [2].
 
 ### 2.1.5 Lost Key
 
@@ -137,7 +133,7 @@ Carroll's key needs to be revoked without affecting any other aspects or assumpt
 
 ### 2.1.7 Special Agent Dave's Subpoena
 
-Dave can, with proper court order, "drill into" the virtual safe deposit box and extract the contents. After this point, Alice's key no longer works.
+Special Agent Dave has been investigating Alice's work at the missile plant, and decides her possession of those blueprints is a criminal act of industrial espionage. He gets a court order to sieze the assets, "drilling into" the virtual safe deposit box and extract the contents. After this point, Alice cannot get access to her files, although Dave's court order to get the necessary key material to decrypt them is out of scope.
 
 ### 2.1.8 Bob's intervention due to nonpayment, or incompetence
 
