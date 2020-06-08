@@ -155,7 +155,12 @@ by Adrian Gropper, edited by Juan Caballero
 
 [Note: This is extracted from a longer, more detailed use case including helpful flow diagrams and an enrollment section which is stored here: https://github.com/agropper/secure-data-store/blob/master/COVID-19_Health_Report_Use_Case.md ]
 
-Alice’s health report is a short narrative impression of as little as one session of care signed by Dr. Bob to be presented to her employer and/or filed in her electronic health record for access by other care providers. Alice's records are held in trust by a "personal record service" recommended to her by her local public library. This service consists of an SDS and an authorization server she uses to access records in that SDS, as well as to grant read and/or write access to others. This server does not need to use SSI, but it MUST be an interoperable one she can change for another at any time. (This swappability of SSI for non-SSI authorization servers may well be a crucial investment in SSI migration for health records). For the sake of familiarity, we could use UMA as the server and OAuth as the interoperability standard for this server, but other forms of prior art might be more relevant in some contexts. [1]
+Alice’s health report is a short narrative impression of as little as one session of care signed by Dr. Bob to be presented to her employer and/or filed in her electronic health record for access by other care providers.
+Alice's records are held in trust by a "personal record service" recommended to her by her local public library. 
+This service consists of an SDS and an authorization server she uses to access records in that SDS, as well as to grant read and/or write access to others. 
+This server does not need to use SSI, but it MUST be an interoperable one she can change for another at any time. 
+(This swappability of SSI for non-SSI authorization servers may well be a crucial investment in SSI migration for health records).
+For the sake of familiarity, we could use UMA as the server and OAuth as the interoperability standard for this server, but other forms of prior art might be more relevant in some contexts. [1]
 
 This use case's main virtues for the purposes of the SDS specification is that it has complex authorization requirements and data privacy requirements, some of which are best met by having a separation of concerns between authorization and storage which would ensure maximum prevention of vendor lock-in by ensuring authorization and storage are separately interchangeable/competitive.
 
