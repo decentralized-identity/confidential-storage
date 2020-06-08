@@ -103,13 +103,48 @@ Would it make sense to try and distill a Focal Use Case from Adrian Gropper's [C
 The following company names and scenarios are hypothetical. 
 
 <b>Evidence of Steel Material Origins for Auto Parts</b> 
-<p>
-In order to benefit from NAFTA (North American Free Trade Agreement) per revised rules, auto manufacturers will now be required to demonstrate that seventy percent of their steel and aluminum purchases originated in North America. They need to make this information available to regulators and customers, without providing unnecessary visibility to competitors. US-based steel manufacturer Steel Inc can generate a mill test report as evidence of steel origins across all processing steps. This mill report (potentially structured as a verifiable credential signed by Steel Inc.’s decentralized identifier keys) can be saved in a secure data store (stored in a discoverable way, one or more locations). Steel Inc can specify that only keys held by their customer Advanced Automotive, as well as audit and regulatory bodies in the US Government (like USTR), will be accepted to decrypt and access the plain text mill certificate data (sharing with explicit consent). Other parties will be required to request access, which Steel Inc may choose to provide depending on the audience. Some attributes included in the mill certificate may be more publicly available, such as the type of steel product, specification/grade, and location where it was melted and poured. These data fields are still securely stored with the rest of the mill certificate, but they do not require authentication to view.  </p>
+
+<p>In order to benefit from NAFTA (North American Free Trade Agreement) per revised
+rules, auto manufacturers will now be required to demonstrate that seventy
+percent of their steel and aluminum purchases originated in North America. They
+need to make this information available to regulators and customers, without
+providing unnecessary visibility to competitors. US-based steel manufacturer
+Steel Inc can generate a mill test report as evidence of steel origins across
+all processing steps. This mill report (potentially structured as a verifiable 
+credential issued by Steel Inc.’s decentralized identifier keys) can be saved in
+a secure data store (stored in a discoverable way, one or more locations). Steel
+Inc can specify that only keys held by their customer Advanced Automotive, as
+well as audit and regulatory bodies in the US Government (like USTR), will be
+accepted to decrypt and access the plain text mill certificate data (sharing
+with explicit consent). Other parties will be required to request access, which
+Steel Inc may choose to provide depending on the audience. Some attributes
+included in the mill certificate may be more publicly available, such as the
+type of steel product, specification/grade, and location where it was melted and
+poured. These data fields are still securely stored with the rest of the mill
+certificate, but they do not require authentication to view.</p>
 
 <b>Perishable Food Recall</b>
-<p>
-Super Fresh Market (SFM) had several customers get sick after consuming a cabbage and romaine lettuce mix. The company is worried about another E. coli scare and wants to quickly identify where the product came and what other stores it may be in. Their staff member Carlos scans a QR code on the salad mix and authenticates as an employee of SFM. After logging in he can see origin and transport details not available to the general public, such as the fact that the lettuce came from Sunbright Farms in California, and that it was transported in refrigerated vehicles the prior week by two different 3PL (third party logistics) providers. The SFM employee can reach out to request that these 3PL’s provide more detailed information about their cold storage temperature readings and transit routes. Given the potential recall situation each 3PL chooses to grant Carlos access to view this information. SFM is able to identify a spike in produce temperature during the final leg of distribution, meaning that product in three of their stores may be impacted. The salad mix is immediately removed from the three stores as the investigation continues. In this scenario Carlos, acting as a SFM employee, is already able to authenticate and view some information in a secure data store. He can also quickly be granted access to more information based on the urgency of the recall scenario. However on a daily basis he does not need to see trade route information for 3PLs, which is typically considered a trade secret. 
-  </p>
+
+<p> Super Fresh Market had several customers get sick after consuming a
+cabbage and romaine lettuce mix. The company is worried about another E. coli
+scare and wants to quickly identify where the product came and what other stores
+it may be in. Their staff member Carlos scans a QR code on the salad mix and
+authenticates as an employee. After logging in he can see origin and
+transport details not available to the general public, such as the fact that the
+lettuce came from Sunbright Farms in California, and that it was transported in
+refrigerated vehicles the prior week by two different third party
+logistics providers. Carlos can reach out to request that these logistics companies
+provide more detailed information about their cold storage temperature readings
+and transit routes. Given the potential recall situation each logistics company chooses to
+grant Carlos access to view this information. Carlos is able to identify a spike in
+produce temperature during the final leg of distribution, meaning that product
+in three of their stores may be impacted. The salad mix is immediately removed
+from the three stores as the investigation continues. In this scenario Carlos,
+acting as a Super Fresh Market employee, is already able to authenticate and view some
+information in a secure data store. He can also quickly be granted access to
+more information based on the urgency of the recall scenario. However on a daily
+basis he does not need to see trade route information for logistics companies, which is
+typically considered a trade secret. </p>
 
 
 # ​X.​ Deployment topologies
