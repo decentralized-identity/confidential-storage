@@ -3,7 +3,7 @@ import { testServer } from './edv-server-test-helper';
 import mock from './mock-client';
 import vendors from './vendors';
 
-jest.setTimeout(10 * 1000);
+jest.setTimeout(20 * 1000);
 
 Object.values(vendors).map((vendor: any) => {
   return describe(vendor.name, () => {
