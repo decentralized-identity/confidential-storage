@@ -147,7 +147,7 @@ three components need to be considered:
 * Trusted computing - computational resources which have access to private keys
   and plain text private data
 
-# # 2.2 Electronics Medical Records 
+# # 2.2 Electronic Medical Records 
 
 by Adrian Gropper, edited by Juan Caballero
 
