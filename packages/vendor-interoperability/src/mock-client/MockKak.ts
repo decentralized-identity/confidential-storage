@@ -1,4 +1,4 @@
-import { decode } from './BadEncoding';
+import { decode } from './Base58Btc';
 
 import nacl from 'tweetnacl';
 
