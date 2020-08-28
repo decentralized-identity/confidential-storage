@@ -242,7 +242,58 @@ and in transit to and from the <a>storage provider</a>.
         </dl>
 
       </section>
+      <section class="informative">
+      <h3>
+Prior Art
+        </h3>
 
+        <h4>
+          Peergos
+        </h4>
+        <p>
+          <a href="https://github.com/peergos/peergos">Peergos</a> has mostly the same requirements as SDS (actually stronger privacy and security requirements in several cases) and is built on top of ipfs.
+          In summary, its properties include:
+          <ul>
+            <li>
+              global p2p private filesystem
+            </li>
+            <li>
+              strong end to end encryption, and fine grained access control (read only and writable) (capability based, so server's are trustless)
+            </li>
+            <li>
+              data model is hash linked data (IPLD) with updates signed by a keypair
+            </li>
+            <li>
+              hide metadata from server including file names, mime-types, file sizes, directory topology, and also who has access to what (the server cannot see who has been granted access to what)
+            </li>
+            <li>
+              directories are indistinguishable from small files to the server
+            </li>
+            <li>
+              independent of DNS and TLS certificate authorities (though there is a web interface if you trust them)
+            </li>
+            <li>
+              handle arbitrarily large files, including streaming, and O(1) seeking
+            </li>
+            <li>
+              data can be trivially mirrored which provides live redundancy over the ipfs protocol
+            </li>
+            <li>
+              efficient modification of large files
+            </li>
+            <li>
+              resistant to quantum computer based attacks - unshared files are already fully post-quantum, shared files currently have a limited time window of vulnerability to a large quantum computer
+            </li>
+            <li>
+              access control is done with a version of <a href="https://github.com/Peergos/Peergos/raw/master/papers/wuala-cryptree.pdf">cryptree</a>, improved to fit in the ipfs data model, which is a stunning data structure
+            </li>
+            <li>
+              all data is in a merkle-champ (compressed hash-array mapped prefix-trie) which is a great data structure for content addressed mutable data, and plays very well with CRDTs as well.
+            </li>
+          </ul>
+        More technical descriptions are available <a href="https://book.peergos.org">here</a>
+        </p>
+      </section>
       <section class="informative">
         <h3>
 Use Cases
