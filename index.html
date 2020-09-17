@@ -251,7 +251,7 @@ Prior Art
           Peergos
         </h4>
         <p>
-          <a href="https://github.com/peergos/peergos">Peergos</a> has mostly the same requirements as SDS (actually stronger privacy and security requirements in several cases) and is built on top of ipfs.
+          <a href="https://github.com/peergos/peergos">Peergos</a> has many of the same requirements as SDS (actually stronger privacy requirements, especially against a quantum computer) and is built on top of ipfs.
           In summary, its properties include:
           <ul>
             <li>
@@ -264,7 +264,10 @@ Prior Art
               data model is hash linked data (IPLD) with updates signed by a keypair
             </li>
             <li>
-              hide metadata from server including file names, mime-types, file sizes, directory topology, and also who has access to what (the server cannot see who has been granted access to what)
+              hide metadata from server including file names, mime-types, file sizes, directory topology 
+            </li>
+            <li>
+              hide social graph from server (the server cannot see who has been granted access to what)
             </li>
             <li>
               directories are indistinguishable from small files to the server
@@ -279,16 +282,22 @@ Prior Art
               data can be trivially mirrored which provides live redundancy over the ipfs protocol
             </li>
             <li>
-              efficient modification of large files
+              efficient modification of large files without having to re-encrypt the entire file
             </li>
             <li>
               resistant to quantum computer based attacks - unshared files are already fully post-quantum, shared files currently have a limited time window of vulnerability to a large quantum computer
             </li>
             <li>
-              access control is done with a version of <a href="https://github.com/Peergos/Peergos/raw/master/papers/wuala-cryptree.pdf">cryptree</a>, improved to fit in the ipfs data model, which is a stunning data structure
+              access control is done with a version of <a href="https://github.com/Peergos/Peergos/raw/master/papers/wuala-cryptree.pdf">cryptree</a>, improved to fit in the ipfs data model, which is a stunning data structure. More details can be read <a href="https://book.peergos.org/security/cryptree.html">here</a>.
             </li>
             <li>
-              all data is in a merkle-champ (compressed hash-array mapped prefix-trie) which is a great data structure for content addressed mutable data, and plays very well with CRDTs as well.
+              all data is in a merkle-champ (compressed hash-array mapped prefix-trie) which is a great data structure for content addressed mutable data, and plays very well with CRDTs as well. The original paper on the CHAMP structure is https://michael.steindorfer.name/publications/oopsla15.pdf. The properties of champs that are useful are insertion order indepdendence (giving a canonical root for a given set of mappings), and balanced structure. 
+            </li>
+            <li>
+              Unshared files are safe from exposure by a large quantum computer (this is because their privacy only relies on hashing and symmetric encryption, neither of which are significantly weakened by a quantum computer). 
+            </li>
+            <li>
+              Peergos servers are trustless. The worst that a malicious server could do is delete your data or withhold valid updates, both of which are easily detected and mitigated by running a mirror. 
             </li>
           </ul>
         More technical descriptions are available <a href="https://book.peergos.org">here</a>
