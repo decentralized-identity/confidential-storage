@@ -1,1 +1,1 @@
-// declare module 'base64url';
+declare module 'uuid';
