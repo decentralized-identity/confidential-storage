@@ -42,6 +42,20 @@
           "alg": "HS256",
           "k": "49JUNpuy7808NoTTbB0q8rgRuPSMyeqSswCnWKr0MF4"
         }
+      },
+      "vaultConfig": {
+        "id": "73cc68d3-4de2-4e47-b82f-4be52f51629d",
+        "referenceId": "did:key:z6Mkf5rGMoatrSj1f4CyvuHBeXJELe9RPdzo2PKGNCKVtZxP#primary",
+        "sequence": 0,
+        "controller": "did:key:z6Mkf5rGMoatrSj1f4CyvuHBeXJELe9RPdzo2PKGNCKVtZxP",
+        "hmac": {
+          "id": "urn:multibase:uEqwxeY_UyPYkKFB8PVihJdLlrAQKeAh50Z3ay2QO1wzC",
+          "type": "Sha256HmacKey2019"
+        },
+        "keyAgreementKey": {
+          "id": "did:key:z6Mkf5rGMoatrSj1f4CyvuHBeXJELe9RPdzo2PKGNCKVtZxP#z6LScqmY9kirLuY22G6CuqBjuMpoqtgWk7bahWjuxFw5xH6G",
+          "type": "X25519KeyAgreementKey2019"
+        }
       }
     }
   ]
