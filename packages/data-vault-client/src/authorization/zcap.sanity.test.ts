@@ -7,7 +7,7 @@ import * as fixtures from '../__fixtures__';
 
 it('can create signed invocation', async () => {
   const key = await ed25519.Ed25519KeyPair.generate({
-    seed: base64url.toBuffer(fixtures.client[0].seed),
+    seed: base64url.decode(fixtures.client[0].seed),
   });
   const invoker = new CapabilityInvoker(key);
 
