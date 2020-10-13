@@ -2,7 +2,7 @@ import { signCapabilityInvocation } from 'http-signature-zcap-invoke';
 import { CapabilityInvoker } from '../CapabilityInvoker';
 import * as ed25519 from '@transmute/did-key-ed25519';
 
-import base64url from 'base64url';
+import base64url from 'base64url-universal';
 import * as fixtures from '../__fixtures__';
 
 it('can create signed invocation', async () => {
