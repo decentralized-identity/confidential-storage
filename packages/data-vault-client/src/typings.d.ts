@@ -1,2 +1,2 @@
 declare module 'uuid';
-declare module 'http-signature-zcap-invoke'
+declare module 'http-signature-zcap-invoke';
