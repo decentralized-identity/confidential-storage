@@ -46,6 +46,8 @@
   "peerDependencies": {},
   "devDependencies": {
     "@size-limit/preset-small-lib": "^4.6.0",
+    "base64url-universal": "^1.1.0",
+    "http-signature-zcap-invoke": "^1.1.1",
     "husky": "^4.3.0",
     "size-limit": "^4.6.0",
     "tsdx": "^0.14.0",
