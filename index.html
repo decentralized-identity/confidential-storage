@@ -2489,7 +2489,11 @@ Connection: keep-alive
     </p>
 
     <section>
-      <h3>General Object Requirements</h3>
+      <h3>Instance Discovery</h3>
+    </section>
+
+    <section>
+      <h3>Object IDs & Relationships</h3>
 
       <ol>
         <li>
@@ -2561,7 +2565,7 @@ Connection: keep-alive
     </section>
 
     <section>
-      <h3>Masterless Replication</h3>
+      <h3>Data Replication</h3>
 
       <p>
         A single entity may have one or more instances of a Hub that can span across devices, clouds, and other 
@@ -2588,13 +2592,23 @@ Connection: keep-alive
     </section>
 
     <section>
+      <h3>Object State Syncronization</h3>
+    </section>
+
+    <section>
+      <h3>Authentication</h3>
+    </section>
+
+    <section>
+      <h3>Access Control</h3>
+    </section>
+
+    <section>
       <h3>Interfaces</h3>
 
       <p>
-        A single entity may have one or more instances of a Hub that can span across devices, clouds, and other 
-        locations, all of which are addressable via a URI routing mechanism linked to the entity's Decentralized 
-        Identitfier. Hub instances sync state changes to all objects they contain, ensuring the owner can access 
-        their data from anywhere, even when they are offline.
+        The following set of interfaces facilitate application-level functionality by defining logic for how 
+        specific semantically encoded objects are handled and transacted.
       </p>
 
       <section>
