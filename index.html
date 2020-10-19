@@ -2593,6 +2593,22 @@ Connection: keep-alive
 
     <section>
       <h3>Object State Syncronization</h3>
+
+      <p>
+        The syncronization of state for objects in the system is accomplished via a model of extensible Sync 
+        Strategies. Objects, and their subsequent modifications, MUST use a standardized Sync Strategy to ensure 
+        other Hub instances are able to converge the state of objects in the system and achieve the same shared 
+        state.
+      </p>
+
+      <section>
+        <h4>Last Write Wins</h4>
+      </section>
+
+      <section>
+        <h4>Delta-Based CRDT</h4>
+      </section>
+
     </section>
 
     <section>
