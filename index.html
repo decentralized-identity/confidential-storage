@@ -538,9 +538,15 @@ secure data vaults that enable data vault clients to do meta data indexing while
 
         <p class="issue" data-number="138"></p>
 
+        <p class="issue">Does it make sense to differentiate 'create' from 'update',
+        in terms of allowed actions, or is 'write' sufficient?</p>
+
         <p>
 Data vaults allow for the classic set of CRUD (Create, Read, Update and Delete)
 operations on its data models.
+All operations perfomed by an Encrypted Data Vault must carry appropriate
+authorization. This section considers the structure (data model) of
+authorizations in the context of operations they're authorizing.
         </p>
 
         <section class="normative">
@@ -548,19 +554,50 @@ operations on its data models.
     Create Operation
           </h3>
 
-          <ul>
-            <li>
-Create Vault: Creates/provisions an Encrypted Data Vault by specifying a
-<code>DataVaultConfiguration</code> structure. This includes Replication
-configuration.
-            </li>
-            <li>
-Create Index: Creates an Index for a particular Vault.
-            </li>
-            <li>
-Create Resource (Document or Stream): Creates a Resource in a given Vault.
-            </li>
-          </ul>
+          <h4>Create Vault</h4>
+
+          <p>
+This operation creates/provisions an Encrypted Data Vault instance by specifying
+a <code>DataVaultConfiguration</code> structure (see the Encrypted Data Vault
+Data Model section). This includes Replication configuration.
+          </p>
+
+          <pre class="example highlight"
+            title="Example authorization capability for a Create Vault operation.">
+{
+  "@context": ["https://w3id.org/security/v2"],
+  "allowedAction": "write",
+  // entity on which the operation is performed
+  "invocationTarget": "https://example.com/edvs",
+  // cryptographic key which is allowed to perform the operation
+  "invoker": "did:example:abcd#key1",
+  "proof": {
+    // ...
+  }
+}
+          </pre>
+
+          <h4>Create Resource</h4>
+
+          <p>
+This operation creates an encrypted resource (Document or Stream), in a given
+vault instance.
+          </p>
+
+          <pre class="example highlight"
+            title="Example authorization capability for a Create Resource operation.">
+{
+  "@context": ["https://w3id.org/security/v2"],
+  "allowedAction": "write",
+  // entity on which the operation is performed
+  "invocationTarget": "https://example.com/edvs/z4sRgBJJLnYy/docs",
+  // cryptographic key used to prove possession (invoke the capability)
+  "invoker": "did:example:abcd#key1",
+  "proof": {
+    // ...
+  }
+}
+          </pre>
         </section>
 
         <section class="normative">
@@ -568,18 +605,47 @@ Create Resource (Document or Stream): Creates a Resource in a given Vault.
     Read Operation
           </h3>
 
-          <ul>
-            <li>
-Read Vault Configuration: Returns the <code>DataVaultConfiguration</code> object
-for a given Vault.
-            </li>
-            <li>
-Read Index: Returns the Index configuration object.
-            </li>
-            <li>
-Read Resource (Document or Stream): Returns the given resource.
-            </li>
-          </ul>
+          <h4>Read Vault Configuration</h4>
+
+          <p>
+Returns the <code>DataVaultConfiguration</code> object for a given Vault.
+          </p>
+
+          <pre class="example highlight"
+            title="Example authorization capability for a Read Vault operation.">
+{
+  "@context": ["https://w3id.org/security/v2"],
+  "allowedAction": "read",
+  // entity on which the operation is performed
+  "invocationTarget": "https://example.com/edvs/z4sRgBJJLnYy",
+  // cryptographic key used to prove possession (invoke the capability)
+  "invoker": "did:example:abcd#key1",
+  "proof": {
+    // ...
+  }
+}
+          </pre>
+
+          <h4>Read Resource (Document or Stream)</h4>
+
+          <p>
+Returns the requested encrypted resource.
+          </p>
+
+          <pre class="example highlight"
+            title="Example authorization capability for a Read Resource operation.">
+{
+  "@context": ["https://w3id.org/security/v2"],
+  "allowedAction": "read",
+  // entity on which the operation is performed
+  "invocationTarget": "https://example.com/edvs/z4sRgBJJLnYy/docs/zMbxmSDn2Xzz",
+  // cryptographic key used to prove possession (invoke the capability)
+  "invoker": "did:example:abcd#key1",
+  "proof": {
+    // ...
+  }
+}
+          </pre>
         </section>
 
         <section class="normative">
@@ -587,23 +653,47 @@ Read Resource (Document or Stream): Returns the given resource.
             Update Operation
           </h3>
 
-          <p class="issue">
-Does an Update Index operation make sense?
+          <h4>Update Vault Configuration</h4>
+
+          <p>
+Modifies the <code>DataVaultConfiguration</code> object for a given Vault.
           </p>
 
-          <ul>
-            <li>
-Update Vault Configuration: Modifies the <code>DataVaultConfiguration</code>
-object for a given Vault.
-            </li>
-            <li>
-Update Index: Modifies the Index configuration object.
-            </li>
-            <li>
-Update Resource (Document or Stream): Updates the encrypted resource (note that
-this is a "full replace" operation).
-            </li>
-          </ul>
+          <pre class="example highlight"
+            title="Example authorization capability for an Update Vault operation.">
+{
+  "@context": ["https://w3id.org/security/v2"],
+  "allowedAction": "write",
+  // entity on which the operation is performed
+  "invocationTarget": "https://example.com/edvs/z4sRgBJJLnYy",
+  // cryptographic key used to prove possession (invoke the capability)
+  "invoker": "did:example:abcd#key1",
+  "proof": {
+    // ...
+  }
+}
+          </pre>
+
+          <h4>Update Resource (Document or Stream)</h4>
+
+          <p>
+Updates the encrypted resource (note that this is a "full replace" operation).
+          </p>
+
+          <pre class="example highlight"
+            title="Example authorization capability for a Read Resource operation.">
+{
+  "@context": ["https://w3id.org/security/v2"],
+  "allowedAction": "write",
+  // entity on which the operation is performed
+  "invocationTarget": "https://example.com/edvs/z4sRgBJJLnYy/docs/zMbxmSDn2Xzz",
+  // cryptographic key used to prove possession (invoke the capability)
+  "invoker": "did:example:abcd#key1",
+  "proof": {
+    // ...
+  }
+}
+          </pre>
         </section>
 
         <section class="normative">
@@ -611,20 +701,83 @@ this is a "full replace" operation).
             Delete Operation
           </h3>
 
+          <h4>Delete Vault</h4>
+
           <p class="issue" data-number="114"></p>
 
-          <ul>
-            <li>
-Delete Vault Configuration: Deletes a Vault.
-            </li>
-            <li>
-Delete Index: Deletes an Index.
-            </li>
-            <li>
-Delete Resource (Document or Stream): Deletes the encrypted resource (note that
-a tombstone object should remain behind for replication purposes).
-            </li>
-          </ul>
+          <p>
+Deletes a vault.
+          </p>
+
+          <pre class="example highlight"
+               title="Example authorization capability for a Delete Vault operation.">
+{
+  "@context": ["https://w3id.org/security/v2"],
+  "allowedAction": "write",
+  // entity on which the operation is performed
+  "invocationTarget": "https://example.com/edvs/z4sRgBJJLnYy",
+  // cryptographic key used to prove possession (invoke the capability)
+  "invoker": "did:example:abcd#key1",
+  "proof": {
+    // ...
+  }
+}
+          </pre>
+
+          <h4>Delete Resource (Document or Stream)</h4>
+
+          <p>
+Deletes the encrypted resource (note that a tombstone object should remain
+behind for replication purposes).
+          </p>
+
+          <pre class="example highlight"
+               title="Example authorization capability for a Delete Resource operation.">
+{
+  "@context": ["https://w3id.org/security/v2"],
+  "allowedAction": "write",
+  // entity on which the operation is performed
+  "invocationTarget": "https://example.com/edvs/z4sRgBJJLnYy/docs/zMbxmSDn2Xzz",
+  // cryptographic key used to prove possession (invoke the capability)
+  "invoker": "did:example:abcd#key1",
+  "proof": {
+    // ...
+  }
+}
+          </pre>
+        </section>
+
+        <section class="normative">
+          <h3>
+            Query Operation
+          </h3>
+
+          <h4>Query all Resources in a Vault</h4>
+
+          <p>
+Requests all resources in a vault.
+          </p>
+
+          <pre class="example highlight"
+               title="Example authorization capability for a Query All Resources in a Vault operation.">
+{
+  "@context": ["https://w3id.org/security/v2"],
+  "allowedAction": "read",
+  // entity on which the operation is performed
+  "invocationTarget": "https://example.com/edvs/z4sRgBJJLnYy/query",
+  // cryptographic key used to prove possession (invoke the capability)
+  "invoker": "did:example:abcd#key1",
+  "proof": {
+    // ...
+  }
+}
+          </pre>
+
+          <h4>Query on an Encrypted Index Value</h4>
+
+          <p class="issue">
+Should there be a separate allowed action for querying on an index?
+          </p>
         </section>
       </section>
 
