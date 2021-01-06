@@ -4,7 +4,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      working-directory: ./packages/data-vault-client
+      working-directory: ./packages/data-vault-example
     steps:
       - name: Begin CI...
         uses: actions/checkout@v2

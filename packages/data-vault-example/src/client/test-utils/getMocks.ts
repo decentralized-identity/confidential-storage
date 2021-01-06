@@ -1,9 +1,9 @@
 import { getFastify } from '../../server/server';
 import { isRecipient, createRecipient, isNewEDV } from '../test-utils';
 
-const { EdvClient, EdvDocument } = require('edv-client');
-
 import mock from '../mock';
+
+const { EdvClient, EdvDocument } = require('edv-client');
 
 let invocationSigner: any;
 let keyResolver: any;

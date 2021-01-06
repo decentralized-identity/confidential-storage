@@ -7,10 +7,6 @@ import { getRandomValues } from 'isomorphic-webcrypto';
 
 import path from 'path';
 import jsigs from 'jsonld-signatures';
-const {
-  sign,
-  suites: { Ed25519Signature2018 },
-} = jsigs;
 
 import { CapabilityDelegation } from 'ocapld';
 
@@ -22,6 +18,10 @@ import {
   KeyAgreementKey,
   Sha256HmacKey2019,
 } from '../client';
+const {
+  sign,
+  suites: { Ed25519Signature2018 },
+} = jsigs;
 
 const { EdvClient, EdvDocument } = require('edv-client');
 

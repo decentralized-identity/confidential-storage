@@ -1,7 +1,7 @@
-const zcapVerify = require('http-signature-zcap-verify');
 import { ServerInstance } from '../../types';
 import { documentLoader } from '../../client/__fixtures__/documentLoader';
 import base64url from 'base64url';
+const zcapVerify = require('http-signature-zcap-verify');
 
 const jsigs = require('jsonld-signatures');
 

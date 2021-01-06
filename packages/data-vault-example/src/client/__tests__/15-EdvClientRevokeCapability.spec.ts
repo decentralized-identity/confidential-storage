@@ -3,15 +3,15 @@
  */
 import jsigs from 'jsonld-signatures';
 
+import { CapabilityDelegation } from 'ocapld';
+
+import { getMocks } from '../test-utils/getMocks';
+
 const {
   SECURITY_CONTEXT_V2_URL,
   sign,
   suites: { Ed25519Signature2018 },
 } = jsigs;
-
-import { CapabilityDelegation } from 'ocapld';
-
-import { getMocks } from '../test-utils/getMocks';
 
 let fastifyServer: any;
 let invocationSigner: any;

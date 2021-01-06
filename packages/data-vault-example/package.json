@@ -21,7 +21,7 @@
     "watch": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test --runInBand",
-    "lint": "tsdx lint",
+    "lint": "tsdx lint src --fix",
     "prepare": "tsdx build",
     "prestart": "npm run build",
     "start": "node ./run.js",
