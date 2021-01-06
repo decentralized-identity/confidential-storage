@@ -18,6 +18,11 @@ jobs:
       - name: Lint
         working-directory: ${{ env.working-directory }}
         run: npm run lint
+      # this starts mongo which is currently required to pass the tests.
+      - name: Build and start docker images
+        working-directory: ${{ env.working-directory }}
+        run: npm run docker:start:dev:build &
+      # this runs typescript tests against a local server (not the docker server started above)
       - name: Test
         working-directory: ${{ env.working-directory }}
         run: npm run test
