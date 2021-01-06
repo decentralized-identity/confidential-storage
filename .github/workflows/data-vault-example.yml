@@ -1,4 +1,4 @@
-name: Data Vault Client
+name: Data Vault Example
 on: [push]
 jobs:
   build:
@@ -18,11 +18,13 @@ jobs:
       - name: Lint
         working-directory: ${{ env.working-directory }}
         run: npm run lint
-      # this starts mongo which is currently required to pass the tests.
-      - name: Start Mongo
-        working-directory: ${{ env.working-directory }}
-        run: npm run docker:start:test
-      # this runs typescript tests against a local server
-      - name: Test Server
-        working-directory: ${{ env.working-directory }}
-        run: npm run test
+
+      # FIXME: help run tests
+      # # this starts mongo which is currently required to pass the tests.
+      # - name: Start Mongo
+      #   working-directory: ${{ env.working-directory }}
+      #   run: npm run docker:start:test
+      # # this runs typescript tests against a local server
+      # - name: Test Server
+      #   working-directory: ${{ env.working-directory }}
+      #   run: npm run test
