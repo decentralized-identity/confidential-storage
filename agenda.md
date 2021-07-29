@@ -6,10 +6,179 @@
 
 _For this call, you are encouraged to turn your video on. This is a good way to build rapport given we are a large, disparate group experiencing a lot of churn._
 
-_This document is live-edited DURING each call, and stable/authoritative copies live on our github repo under /agenda.md .
-Please note that we might not notice a pullrequest in time, but you are free to propose agenda items for future meetings via hackmd._
+_This document is live-edited DURING each call, and stable/authoritative copies live on our github repo under `/agenda.md`.
+Please note that we might not notice a pull request in time, but you are free to propose agenda items for future meetings via hackmd._
 
-## 
+## July 29 2021
+Focus on Hubs
+Attendees:
+* Kaliya
+* TallTed
+* Andreas Freund
+* Adrian Gropper
+* Micheal Terrell
+* Brooklyn Zelenka
+* Randolf Rodriguez
+* (Dmitri Zagdulin)
+
+Kaliya is chairing an Open Conversation
+
+Michael Terrell put this diagram up and was asking about how the [EDV Client](https://github.com/decentralized-identity/confidential-storage/blob/master/diagrams/SDS_Layers.svg)
+
+Bridging between two specs is not totally clear. Michael's company wants to align with both specs and have them bridge. 
+
+Adrian has been engaging with IETF and [presented on Monday this week.](https://www.youtube.com/watch?v=iVx8_DbO3rM&list=PLC86T-6ZTP5ik187oPfRrOUaMw1AuLLi6&t=491s) 
+A background task around authorization involving at least 5 different W3C/Decentralized Identifier work work groups will touch on Authorization
+EDV
+Secure Data Store
+SIOP
+DIDComm
+VCI-HTTP-API 
+
+Authorization protocols (folks jump to thinking about OAuth2) are potentailly relevant in all of them. Any time you put up an API that is going to be protected you are going to end up with an authorization situation. 
+Data models are data models. 
+Put up an End point putting up an API - then you have Authorization. 
+
+**Then the Question becomes** as Justin Ritcher agrees with me - Authorization implacts multiple layers of whatever arrangement we have to explain what we are doing to the world. Adrian - said there is a separation of concerns issue - if we want generativeity and open to innovation. There will be sompething equivalent to IP in the internet - narrow neck of internet - was replaced by various platforms. 
+Apple platform, google platform, msft platform. 
+These lockin mechanisms have sort of evolved to add so many features that drive the lockin - the IP is no longer the narrow neck of the internet - it is these platforms. Gonig forward to map this with SSI - I have come to propose this GNAP that doesn't have the problem that OAuth2 could become this authorization standard that then spreads throughout these various APIs at whatever level the APIs are being designed. 
+Can we detach posession from control? Here is a link to the slides. Issue putting on the table and trying to figure out and maybe reach a consensus. Lets have this authorization discussion. When you do authorization you have two choices - allow for delegation or don't (OAuth or UMA difference - OAuth vs OPenIDConnect/SIOP) We are going to want to agree that delegation is essential and a human right or optional.  
+
+What is the Action Item here - in GNAP - should there be an appendix on how they might relate to GNAP - why we need it not to be compatable with OAuth2 
+Or create a HumanRights working group. 
+
+Question: I thought we agreed not to do GNAP cause it is to warly. Answer: Yes. 
+
+OAuth2: was agred on for now. 
+
+Adrian: would like to share something for discussion - everyone is interested in a micro-services architecture - storage is separated from the code. So what that means is that this authorization issue is going to come up again and again. Just because of that. If we completely ignore GNAP (imagine it doesn't exist) not deal with authoriazaiton in a normalized way. We might end up with different authorization protocols for EDVs and Hubs. Authorization requires a request data model (standardized by RAR or made up)
+Because that is the generic role of authorization (or any other protocol invented for authorization) when you ignore the leap between OAuth to GNAP - what you are saying everywhere you have a request that has an authorization - each one of these working gorups will develop special snow-flake of special request - each will specify that aspect of things. At least in the gruops I have been in to not be specifying that layer - required and necessary.  Some other hooks that are receptive to. 
+
+Those of us that have worked on this for a decade - a proposal for doing it called GNAP - you can't expect us to just all get on the same page - we are doing work that we have been doing for a while - we have maturity. In that light it is challenging to be told you don't understand - that doesn't help. 
+
+To the extent that we are interested in interoperability in the DID and VC data models - if these things are randomly put out of scope by these groups. They are being out of scope becuase that is not the piece of the elephant we are not eating today. 
+If you can summarize in tight technical form - this is a limitation in OAuth2 - how GNAP solves. 
+This sussince technical conversations have not been in this space. 
+I have been trying to understand - but lack technical basis. 
+Adrian - says he can't do that so isn't sophisticated as you all. Differences in all the microservices. It isn't going to happen frm me. Justin is a better path to have these answered. 
+
+Kaliya put forward rapid iteration process for completing a spec that can be implemented. Potentially in a 10 week sprint. 
+
+Daniel suggested that maybe people out in PRs that are more opionated PR. 
+* Ceramic
+* Textile
+* Fusion 
+
+Lets get it done with implementations and codify what is done.  
+Michael (PulseConnect) - is open to contributing closer to implementation and deployment. We have quite a bit of work to do before we can put it out there.
+Adrian- Daniel all for looking at example implementation. Part I am confused by relative to our (HIEofONE) implementation. Is there a separate authorization layer for the hub or part of it. It will have to understanding of 
+* capability model
+* signed awarness 
+
+Authorization module
+- so then questions becomes Wallets secure wallets unlocked biometrics. Will be connectecd wallets and secure elements on one side and to Identity Hub on the other. 
+
+If I'm Alice and I want to get a hold of Bob's stuff - object to request from Bob (standarized) Bob is going to pull it down - do I want to do this. Bob is going to have to codify a capabiliyt that gives Allice the keys she needs to call into the hub. 
+Adrian - so if I'm hearing you. The Identity Hub consists of two modules (authorization module) the other one is the thing that controls access to storage - that is separate - access token. What would be helpful - moving faster implementing something - agree on something 
+* authorization module
+* access token is issued 
+* consume Storage module
+* 
+Dan wrote this
+step 1: Inbound call
+2: Access Caller to determine access
+3: If access checks out, return objects
+4: If objects encrypted, decrypt on client
+
+
+Adrian - here is the problem. When you bundle possession with control - you risk locking in teh customer. 
+The way the platform economics - end up with apple and google (we control the authorization model - and storage) It is the way classic facebook - we as a service are going to compbine the access control (how manage friends list) and we are going to control your data - Inrupt is doing the same thing as facebook - we have this model where you can have apps. 
+
+TallTed bluring a bunch of lines and saying things that are inacurate. 
+
+When combine control with posission. Allice on her phone controls ability to access - then the data is wherever. Connection between storage module and authorization module needs to be standarized. 
+
+TallTed: What aiming for something loosely coupled - standard that gets specifid you as a client build request one way - data store respond. 
+
+It is not 
+Gitrepo like - Masterlist 
+replicates
+LogicalHub that indivduals commit to - if by magic it is in two spaces. 
+logicalme" - can get me on phone or msft instance. Indivdual is only one who can sign permissions and have keys. 
+
+It doesn't have keys. 
+Only outside people who have key control can committ to. EDV client. 
+Instance of hub provisioning duplicated access. 
+
+when I do the capabilities. When I do a process or committ to local hub. Commit to bobs public key - imediately replicated out - so if bob connects to another instance - he can get data from any one of them. Masterlist DB - don't think of clients and servers. One logical service. 
+Committ to IPFS ring that only indivdual has keys. 
+
+Ring of instances connected by IPFS only sync with each other. 
+We store in tartergrad network - object stored there. Rasberry Pi. Instance on phone and computer. Asking for more clear API from IPFS - asking for Go-team for - interediction layer. 
+Should I give this CID out - yes/no any request outside of known ring of instances. 
+Right now IPFS data - encrypted in public IPFS - what when it gets broken. 
+Using IPFS using for replication. 
+
+No one and everyone is doing Authentication. 
+
+Kaliya -asked Adrian how different
+Adrian - model we work on - we avoid - data minimzation - not making a copy of any data - if you trust the authorization mechanism of the place that it is. Don't make me copy it into somewhere else - give me control delegatable control over what happens next - use it to copy that piece of data - go ofline/don't trust to keep. 
+Our Model - that for whatever reason - never duplicate data unless you think they will be unrealizble - ask them to delete it. nature of the control - when you do alow access to data - delgatable. That place that has that control can not tell me what kind of client can bring the access token for access. we don't want token passed around to wrong people (bearer token threat models).
+
+
+
+
+
+
+
+
+## Meeting 1 July 2021
+Focus on Hubs. 
+
+
+Continuing conversation on encoding.
+Object synchronization.
+Tobias “channelled” his inner Daniel.
+To share that there is low trust between the two instances. 
+It must be encrypted OR public
+
+Replication policy at EDV layer - policies at Hubs Layer. 
+Hub policy decision point EDV is policy enforcement point. 
+
+Michael: when we started out Hubs based on IPFS - EDVs based on their own technology. 
+Two meetings - happen in parallel their development. 
+
+New separate independent discussions. 
+To allow evolve separately - not a recognition that they don’t have a relationship. 
+
+Layering conversation and Splits. 
+They are independently implementable? Ensure two developments are still closely link so that you can implement an identity hub on top of an EDV. 
+If you have an identity hub that is utilizing an EDV. One thing the identity hub might provide is policy for EDV - such as replication policy. 
+
+Replication is based on a specific replication technology - by the database choice. 
+
+Charles: Identity Hubs - was discussed to depend on IPLD; is the EDV group thinking about interfaces and data models that would work? 
+
+The current conversation to use DAG-JOSE and DAG-CBOR.
+Would Cryptree also be useful?
+ 
+Data Storage hierarchy. 
+Do you want to build a cryptographic se
+
+Tobias: per-resource encryption versus tree-based efficiency of scale (at cost of granular authZ efficiency)
+
+Andreas: but the question is what the access/authZ system is that the client needs exposed; serving a file is offering a merkle branch(es) proof
+
+The Isssue is [number 60](https://github.com/decentralized-identity/identity-hub/issues/60). 
+
+## 24 June - EDV call
+
+## 23 June - IdHub 
+
+- See separate [notes file](https://hackmd.io/UsGtEYJ9TdmevbFyJHzfRA?view#62321---Use-Cases)
+
+
+## MISSING MEETINGS???
 
 ## Meeting - 8 April 2021 (1600 ET)
 
