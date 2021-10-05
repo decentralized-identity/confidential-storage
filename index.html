@@ -1755,6 +1755,105 @@ Encrypted Data Vault
           </pre>
         </section>
 
+          <section class="normative">
+              <h3>
+                  Batch Operations
+              </h3>
+
+              <p>
+                  Documents within a vault can be created, updated or deleted in a single REST call.
+                  The following HTTP status codes are defined for this service:
+              </p>
+
+              <table class="simple">
+                  <thead>
+                  <th style="white-space: nowrap">HTTP Status</th>
+                  <th>Description</th>
+                  </thead>
+                  <tbody>
+                  <tr>
+                      <td>200</td>
+                      <td>
+                          All operations successful.
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>400</td>
+                      <td>
+                          One or more operations were unsuccessful.
+                      </td>
+                  </tr>
+                  </tbody>
+              </table>
+
+              <p>
+                  A protocol example of a batch request is shown below. The first element in the JSON
+                  array represents a create document operation. The second element represents an update document operation.
+                  The third element represents a delete document operation.
+              </p>
+
+              <pre class="example highlight" title="Data vault batch operation request">
+  POST  /encrypted-data-vaults/z4sRgBJJLnYy HTTP/1.1
+  Host: example.com
+  Content-Type: application/json
+  Accept: application/json, text/plain, */*
+  Accept-Encoding: gzip, deflate
+
+  [{
+    "id": "LHMjVyevZgZh7BiCjCiu7P",
+    "sequence": 0,
+    "jwe": {
+      "protected": "eyJlbmMiOiJDMjBQIn0",
+      "recipients": [{
+        "header": {
+          "alg": "A256KW",
+          "kid": "https://example.com/kms/zSDn2MzzbxmX"
+        },
+        "encrypted_key": "OR1vdCNvf_B68mfUxFQVT-vyXVrBembuiM40mAAjDC1-Qu5iArDbug"
+      }],
+      "iv": "i8Nins2vTI3PlrYW",
+      "ciphertext": "Cb-963UCXblINT8F6MDHzMJN9EAhK3I",
+      "tag": "pfZO0JulJcrc3trOZy8rjA"
+    }
+  },
+  {
+    "id": "4L3jCAmMiQQeWWUv3ADoBi",
+    "sequence": 1,
+    "jwe": {
+      "protected": "eyJlbmMiOiJDMjBQIn0",
+      "recipients": [{
+        "header": {
+          "alg": "A256KW",
+          "kid": "https://example.com/kms/zSDn2MzzbxmX"
+        },
+        "encrypted_key": "OR1vdCNvf_B68mfUxFQVT-vyXVrBembuiM40mAAjDC1-Qu5iArDbug"
+      }],
+      "iv": "i8Nins2vTI3PlrYW",
+      "ciphertext": "Cb-963UCXblINT8F6MDHzMJN9EAhK3I",
+      "tag": "pfZO0JulJcrc3trOZy8rjA"
+    }
+  },
+  {
+    "delete": "NyNHSQ449YcuF4JuxpvM2y"
+  }]
+          </pre>
+
+              <p>
+                  If all operations are successful, an HTTP 200 status
+                  code is expected in return. The response body will be an array of responses - one for each operation.
+                  For create document operations, the new document location will be returned.
+                  For update or delete document operations, a blank string will be returned.
+              </p>
+
+              <pre class="example highlight" title="Successful batch operation response">
+  HTTP/1.1 200 OK
+  Cache-Control: no-cache, no-store, must-revalidate
+  Date: Fri, 14 Jun 2019 18:40:18 GMT
+  Connection: keep-alive
+  ["https://example.com/encrypted-data-vaults/z4sRgBJJLnYy/docs/LHMjVyevZgZh7BiCjCiu7P", "", ""]
+          </pre>
+          </section>
+
         <section class="normative">
           <h3>
     Creating a Stream
