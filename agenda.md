@@ -9,6 +9,122 @@ _For this call, you are encouraged to turn your video on. This is a good way to 
 _This document is live-edited DURING each call, and stable/authoritative copies live on our github repo under `/agenda.md`.
 Please note that we might not notice a pull request in time, but you are free to propose agenda items for future meetings via hackmd._
 
+## October 16 2026
+
+- DWN status
+    - webpage is out of date
+    - Discord is abandoned, full of spam - should be delinked.  consensus call?
+    - DIF-hosted staging DWN server still seems to up, or at least, the TOS isn't 404 - [is anyone maintaining it (dwn-user-guide#11)](https://github.com/decentralized-identity/dwn-user-guide/issues/11)?
+- Anton's use-case matrix (now on [Github]())
+
+## October 9 2026
+
+- DWN status
+    - webpage is out of date
+    - Discord is abandoned, full of spam - should be delinked.  consensus call?
+    - DIF-hosted staging DWN server still seems to up, or at least, the TOS isn't 404 - [is anyone maintaining it (dwn-user-guide#11)](https://github.com/decentralized-identity/dwn-user-guide/issues/11)?
+- Use case/user-story presentations from evaluators - are any clearly more DWN-shaped (DIF), or EDV-shaped (W3C-CCG), or WAS/PWS-shaped (W3C-CCG), or even LWS-shaped (W3C LWS WG)?
+    - Anton Tranelis ( https://web-of-trust.de/ ) - localfirst apps for self-organized identities
+    - new project on top of WOT --> real-life-stack.de
+        - miniapps on top - kanban, map, etc
+        - e2ee --> CRDT over WoT
+    - demo of WoT mechanics
+        - scan bar codes in person --> did:key for each (in person enrolment)
+        - Alan: group model: invites are traced? Anton: Yes, everyone sees who invited whom to a group
+        - grace: group governance? 
+            - anton: to both questions, not yet implemented, but architected as a per-group config
+        - grace: m of n invites?
+            - anton: to both questions, not yet implemented, but architected as a per-group config
+            - trust-protocol-real-life.org - authority log per group; groups own themselves, don't have single/simple owners; 
+    - anton: trust model
+        - ![image](https://hackmd.io/_uploads/rJ0uHKUsGe.png)
+    - dmitri : specs?
+        - anton: trust tasks and VTC specs from Drummond; did:key for now
+    - BF: what's the multidevice/recovery story?
+        - paper key at enrol; personal documents somewhere in CRDT space decrypted by the magic key that gets you ported
+        - did:peer for each contact or context; derivation paths 
+    - https://claude.ai/artifact/GHeHJekhEc6sop9N1F8FgV 
+    - Grace: Join DIF!
+    - Alan: Where's the permissions?
+        - Frank: I'm using [ORDL](https://www.w3.org/TR/odrl-model/) for m-r policy 
+- Dmitri: PWS [demo](https://staging.freewallet.me)
+    - Antigoal: Zero trust; some servers are trusted (personal and/or community [trusted] servers)
+    - quick demo of PWS spec and freewallet site
+- Frank Sanborn: Quick presi on social-fabric(https://Social-fabric.us)
+    - OpenVTC credentials, OpenBadges v3.0
+    - VERY localfirst, web-based for now but goal is server-optional, fully LF
+- Next Steps:
+    - BF will start a github share-doc for the 
+
+
+## DIF Meeting October 2, 2026: Special topic call.
+
+Should we revive the working group
+
+### Attendees
+
+* Grace Rachmany
+* Markus Sabadello
+* Drummond Reed
+* Natural State (Ruben)
+* Dmitri
+* Fatih Kockesen
+* Bengo
+* Anton Tranellis
+
+### Question one: What are you doing here?
+
+* Alan: To make sure people don't make mistakes I've made. I participated in DWN before 
+* Anton: Working on local tgrust based on Decentralized Trust Graph and this could be a local storage solution. https://real-life-stack.de/
+* Fatih: We have some use cases that could use decentralized storage
+* Dmitri: Chairing a W3C group which is the evolution of DWN and other storage working groups, you are all welcome to join  https://github.com/trustoverip/dtgwg-general
+* Ruben: Working on NAOMS which could use the trust graph and could use DWN. https://solidus.network/protocol
+* Markus: Interested in how this can be implemented and brought to live
+* Bengo: Interested in secure data storage and was part of SDS WG and DIF back when. Confused about this as a working group, I don't think there was a WG to revive but it is a task force. The SDS working group is still there and Solidus also overlaps https://solidus.network/protocol
+
+### Are we talking about reviving the spec? What is the case for why we should do anything?
+
+Bengo: the W3C group is promising and this might fragment, and the spec never matured. This seems redundant with DTGWG.  
+Also
+* https://elfaconsortium.eu/
+* https://www.w3.org/TR/lws10-core/  )
+* https://datatracker.ietf.org/wg/atp/about/
+* https://www.w3.org/TR/lws10-core/
+* https://www.w3.org/groups/tf/capability-based-storage/
+Alan: the thing that distinguished this was the node, and part of DWN was how you keep those in sync. It's not just that it's distributed, it's also the structure of the nodes
+
+### How do people feel about Dmitri's generous invitation to include DWN in his Capabilities Based WG?
+
+Fans: Dmitri, Drummond
+Opposition: People shouldn't park the work item in the Capability-Based Task force and the DWNs do not support capability-based work
+
+Bengo: How can you have a unified identity experience across all of these things could be a DIF-based working group. That's where DIF could shine.
+
+Dmitri: What do you actually need to those who are here for other storage project.
+Anton: I see a connection of all the projects and the different properties of the solutions. 
+
+If people are interested in further calls, do people want to put emails in chat?
+
+Suggestion from Bengo: DIF will host discussion about how DIDs can be used with storage nodes. 
+Bumblefudge: Great idea, the main criteria is that meetings need to have an agenda. We could have meetings just for specific walk-throughs and use cases. It doesn't have to be a work item, it could be a few special topic calls to evaluate where their use cases fit. 
+
+Dmitri: How about a Special Topic call on "Distributed Storage Show and Tell"? 
+Michal joined late: has been working on use cases in the area of distributed storage
+Alan said it's not the best basis for further work.
+
+Bengo: IMHO We need to get DTG, Capability-based Storage TF @W3C, and Linked Web Storage WG @W3C in a meeting about replication/distribution, ie what Alan said was the intriguing (if incomplete) goal in DWN: Multiple physical nodes that make up your one logical node. i.e. a ‘personal cloud’ of devices, not just one ‘node’
+
+Conclusion: We will have a joint meeting with Dmitri, other W3C (CCG), DIF and discuss what next for distributed storage
+
+Next call will be on the DIF Calendar as an SDS call, and minutes will be taken [over there in the SDS running agenda/minutes doc](https://github.com/decentralized-identity/confidential-storage/blob/master/agenda.md#secure-data-storage-wg---rolling-agenda--minutes)
+
+
+## October 2 2026
+
+[Notes here](https://github.com/decentralized-identity/decentralized-web-node/blob/main/docs/agenda.md#dif-meeting-october-2-20246-special-topic-call) - we thought it was a DWN-specific call, moving the minutes here because it's a SDS call now :smile: 
+
+## LONG HIATUS
+
 ## July 29 2021
 Focus on Hubs
 Attendees:
