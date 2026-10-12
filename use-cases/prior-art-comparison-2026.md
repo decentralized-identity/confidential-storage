@@ -50,7 +50,7 @@ Concurrent removal is solved differently: p2panda uses strong removal; RLTP lets
 
 ## Footer
 
-Initial Source: A [Claude session](https://claude.ai/artifact/GHeHJekhEc6sop9N1F8FgV) of Anton's.
+Initial Source: A [Claude session](https://claude.ai/artifact/GHeHJekhEc6sop9N1F8FgV) of [Anton](@antontranelis)'s.
 
 Assessments as of 3 October 2026; RLTP and PWS/WAS rows updated 9 October 2026. Sources are given per cell. 
 "Gen 2" = [Web of Trust](https://web-of-trust.de/), live in the [Real Life Stack](https://github.com/real-life-org/real-life-stack).
