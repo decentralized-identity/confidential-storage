@@ -5,7 +5,7 @@ How fifteen approaches to encrypted, shared data spaces handle eleven properties
 ## How to read it
 
 - **Values.** ✓ meets the property, ~ partly, ✗ does not, ? not documented. For K6 and K7 the cell names the kind (ordering, host role) instead.
-- **Provenance.** A cell marked ᵐ was **measured** on a public test bench that runs the same scenarios against several candidates (github.com/real-life-org/port-experimente: membership under conflict, devices, history, stolen state, an adversarial carrier). All other cells were **assessed from the specification or the code** of the project; the reasoning section below names the source for each cell. Where a measurement contradicts an earlier reading, the measured value stands and the reasoning says what was observed.
+- **Provenance.** A cell marked ᵐ was **measured** on a public test bench that runs the same scenarios against several candidates (github.com/real-life-org/port-experimente: membership under conflict, devices, history, stolen state, an adversarial carrier), using the project's own published code. A cell marked ᵖ was measured on the same bench, but on a **prototype built for the bench from a specification or a described model**, not on code the project ships; it shows that the rules hold, not that an implementation exists. All other cells were **assessed from the specification or the code** of the project; the reasoning section below names the source for each cell. Where a measurement contradicts an earlier reading, the measured value stands and the reasoning says what was observed.
 - **Dates.** Document assessments as of 3 October 2026; measured cells as of 16 October 2026.
 - **Camps.** The rows are grouped by where authority over the group lives: a server orders, an owner holds the group, or the group holds itself. That grouping turned out to be the most useful single lens.
 
@@ -45,16 +45,16 @@ How fifteen approaches to encrypted, shared data spaces handle eleven properties
 | NAOMS (Ruben Daniels) | ✓ | ✓ | ✓ | ? | ✓ | causal | not needed | ~ | ? | ? | ✗ |
 | Keyhive (Ink & Switch) | ✓ | ✓ | ✓ | ✓ᵐ | ✓ | causal | not needed | ✓ | ~ᵐ | ✓ᵐ | ~ |
 | p2panda (p2panda) | ✓ᵐ | ✓ | ✓ᵐ | ~ᵐ | ✓ | causal | not needed | ✓ | ✓ | ~ᵐ | ~ |
-| MLS room, commit decides membership (generic model) | ✓ᵐ | ~ᵐ | ✓ᵐ | ✓ᵐ | ✓ᵐ | per epoch, lowest hashᵐ | replaceableᵐ | ~ᵐ | ~ᵐ | ~ᵐ | ~ᵐ |
+| MLS room, commit decides membership (generic model) | ✓ᵖ | ~ᵖ | ✓ᵖ | ✓ᵖ | ✓ᵖ | per epoch, lowest hashᵖ | replaceableᵖ | ~ᵖ | ~ᵖ | ~ᵖ | ~ᵖ |
 | **Real Life Organisation's two generations** | | | | | | | | | | | |
 | WoT Gen 2 (live in the Real Life Stack) | ✓ | ~ | ~ | ~ | ✓/~ | causal | replaceable | ~ | ~ | ~ᵐ | ✓ |
-| RLTP Gen 3 (spec converged) | ✓ | ✓ᵐ | ✓ᵐ | ✓ᵐ | ✓ᵐ | causal | replaceable | ✓ | ✓ | ✓ᵐ | ~ᵐ |
+| RLTP Gen 3 (spec converged, bench prototype, no app) | ✓ | ✓ᵖ | ✓ᵖ | ✓ᵖ | ✓ᵖ | causal | replaceable | ✓ | ✓ | ✓ᵖ | ✗ᵖ |
 
-ᵐ measured on the test bench; other cells assessed from specification or code (sources in the reasoning section).
+ᵐ measured on the test bench with the project's published code; ᵖ measured on a bench prototype built from the specification or model; other cells assessed from specification or code (sources in the reasoning section).
 
 ## Observations
 
-1. **Nobody meets everything.** Among the approaches assessed, the ones closest to the local-first profile below are p2panda (pre-1.0) and Keyhive (alpha integration in automerge-repo, core pre-alpha, no forward secrecy for history), with the measured caveats on K9 and K10 noted in their rows; and RLTP Gen 3, whose spec is converged but which has no shipping app yet.
+1. **Nobody meets everything.** Among the approaches assessed, the ones closest to the local-first profile below are p2panda (pre-1.0) and Keyhive (alpha integration in automerge-repo, core pre-alpha, no forward secrecy for history), with the measured caveats on K9 and K10 noted in their rows; and RLTP Gen 3, whose rules hold on a bench prototype but which has no library or app yet (its measured cells are marked ᵖ for that reason).
 2. **Three camps.** A server orders (Data Rooms, Encrypted Spaces, Anytype ACL). An owner or tenant owns the group (DWN/Enbox, Solid/LWS, PWS/WAS). The group owns itself (p2panda, Keyhive, partly Matrix, RLTP Gen 3).
 3. **The four shapes reviewed by the working group** (DWN, EDV, WAS/PWS, LWS) all have a single owner. PWS comes closest in mechanics: key epochs that rotate on removal and a client-signed governing log the host cannot forge. What it lacks is a group as controller; its editor has said that a group controller is intended.
 4. **Matrix** is the only mature system where authority lives in the group and no sequencer is needed. In exchange, servers see membership.
@@ -263,19 +263,19 @@ The matrix carries no "required" row; different uses weigh the properties differ
 - K10 Concurrent changes: **~ᵐ** — Measured: two admins remove different people at the same time, each distributes a new secret to the members as it sees them, and one of the removed keeps reading (S4b); mutual removal resolves cleanly (S4c). Reproduced natively in rust/p2panda-wasm/tests/peer.rs. github.com/real-life-org/port-experimente
 - K11 Maturity: **~** — 0.7.1, pre-1.0, MIT/Apache-2.0, NLnet-funded.
 
-**MLS room, commit decides membership** (generic model, measured)
+**MLS room, commit decides membership** (generic model, measured on a bench prototype)
 
-- K1 Copies: **✓ᵐ** — Measured: every device holds the full tree and all entries it can open. github.com/real-life-org/port-experimente
-- K2 Devices: **~ᵐ** — Measured: a second device joins, but without a key chain across epochs it integrates neither old nor new entries of a CRDT (S5). github.com/real-life-org/port-experimente
-- K3 Host blind: **✓ᵐ** — Measured: the carrier sees ciphertext and MLS commits (T12). github.com/real-life-org/port-experimente
-- K4 Key change: **✓ᵐ** — Measured: new epoch secret on removal, rotation gives PCS (S7). github.com/real-life-org/port-experimente
-- K5 Offline: **✓ᵐ** — Measured: members commit offline; after the partition the lowest commit hash wins (S3, S4). github.com/real-life-org/port-experimente
-- K6 Ordering: **one commit per epoch, lowest hash winsᵐ** — MLS is linear; concurrent commits are resolved by hash, the loser re-stages. github.com/real-life-org/port-experimente
-- K7 Host role: **replaceableᵐ** — A store-and-forward relay is enough; nothing of the group lives at it. github.com/real-life-org/port-experimente
-- K8 Authority: **~ᵐ** — Membership is whatever the winning commit says: any member commits ('any-staged') or only the founder ('owner'); no rules evaluated against the group state. github.com/real-life-org/port-experimente
-- K9 Continuity: **~ᵐ** — Measured: in owner mode nothing happens without the founder (S8); in any-staged mode the group continues. github.com/real-life-org/port-experimente
-- K10 Concurrent changes: **~ᵐ** — Measured: which of two mutually removing members stays is decided by the commit hash and changes between runs (S4c); the winner reads a third party's concurrent entry (S4c2); a commit that loses its epoch strands the content sealed under it (T2); no history for newcomers (S6). github.com/real-life-org/port-experimente
-- K11 Maturity: **~ᵐ** — A model built for the comparison, not a product; it follows a design we were shown by one project, kept generic here.
+- K1 Copies: **✓ᵖ** — Measured: every device holds the full tree and all entries it can open. github.com/real-life-org/port-experimente
+- K2 Devices: **~ᵖ** — Measured: a second device joins, but without a key chain across epochs it integrates neither old nor new entries of a CRDT (S5). github.com/real-life-org/port-experimente
+- K3 Host blind: **✓ᵖ** — Measured: the carrier sees ciphertext and MLS commits (T12). github.com/real-life-org/port-experimente
+- K4 Key change: **✓ᵖ** — Measured: new epoch secret on removal, rotation gives PCS (S7). github.com/real-life-org/port-experimente
+- K5 Offline: **✓ᵖ** — Measured: members commit offline; after the partition the lowest commit hash wins (S3, S4). github.com/real-life-org/port-experimente
+- K6 Ordering: **one commit per epoch, lowest hash winsᵖ** — MLS is linear; concurrent commits are resolved by hash, the loser re-stages. github.com/real-life-org/port-experimente
+- K7 Host role: **replaceableᵖ** — A store-and-forward relay is enough; nothing of the group lives at it. github.com/real-life-org/port-experimente
+- K8 Authority: **~ᵖ** — Membership is whatever the winning commit says: any member commits ('any-staged') or only the founder ('owner'); no rules evaluated against the group state. github.com/real-life-org/port-experimente
+- K9 Continuity: **~ᵖ** — Measured: in owner mode nothing happens without the founder (S8); in any-staged mode the group continues. github.com/real-life-org/port-experimente
+- K10 Concurrent changes: **~ᵖ** — Measured: which of two mutually removing members stays is decided by the commit hash and changes between runs (S4c); the winner reads a third party's concurrent entry (S4c2); a commit that loses its epoch strands the content sealed under it (T2); no history for newcomers (S6). github.com/real-life-org/port-experimente
+- K11 Maturity: **~ᵖ** — A model built for the comparison, not a product; it follows a design we were shown by one project, kept generic here.
 
 
 ### Real Life Organisation's two generations
@@ -294,19 +294,19 @@ The matrix carries no "required" row; different uses weigh the properties differ
 - K10 Concurrent changes: **~ᵐ** — Measured: promoted admins cannot enforce because the adapter sends no admin-add to the broker (S4b, S8 fail); the relay orders rotations totally, so concurrency only exists as 'noted offline, enforced later'. github.com/real-life-org/port-experimente, src/candidates/gen2/NOTES.md
 - K11 Maturity: **✓** — Live, open source on npm (core 0.6.0).
 
-**RLTP Gen 3** (spec converged)
+**RLTP Gen 3** (spec converged, bench prototype, no app)
 
 - K1 Copies: **✓** — Every member holds the group document and its authority log; recovery via the log.
-- K2 Devices: **✓ᵐ** — Measured: one key-tree leaf per device, the authority log knows only persons; a second device reads along, a lost device is removed alone, removing a person removes all her devices (S5, S5b, S5c). github.com/real-life-org/port-experimente, src/candidates/rltp-beekem/NOTES.md, E7
-- K3 Host blind: **✓ᵐ** — Measured: every frame over the carrier is a sealed entry, cards travel over the encounter channel; the carrier sees ciphertext, a frame kind, hashes and a device pseudonym (T12, also on PWS). github.com/real-life-org/port-experimente
-- K4 Key change: **✓ᵐ** — Measured: new secret per removal, rotation on demand, a passive thief reads nothing after the rotation (S2, S7); a forged leaf from a captured state gains no access (S11, KV3). Identical results with BeeKEM and with MLS as the key protocol. github.com/real-life-org/port-experimente
-- K5 Offline: **✓ᵐ** — Measured: content and membership change offline and converge after the partition heals (S3, S4a–S4j). github.com/real-life-org/port-experimente
+- K2 Devices: **✓ᵖ** — Measured: one key-tree leaf per device, the authority log knows only persons; a second device reads along, a lost device is removed alone, removing a person removes all her devices (S5, S5b, S5c). github.com/real-life-org/port-experimente, src/candidates/rltp-beekem/NOTES.md, E7
+- K3 Host blind: **✓ᵖ** — Measured: every frame over the carrier is a sealed entry, cards travel over the encounter channel; the carrier sees ciphertext, a frame kind, hashes and a device pseudonym (T12, also on PWS). github.com/real-life-org/port-experimente
+- K4 Key change: **✓ᵖ** — Measured: new secret per removal, rotation on demand, a passive thief reads nothing after the rotation (S2, S7); a forged leaf from a captured state gains no access (S11, KV3). Identical results with BeeKEM and with MLS as the key protocol. github.com/real-life-org/port-experimente
+- K5 Offline: **✓ᵖ** — Measured: content and membership change offline and converge after the partition heals (S3, S4a–S4j). github.com/real-life-org/port-experimente
 - K6 Ordering: **causal** — Individually signed, causally linked entries; no sequencer.
 - K7 Host role: **replaceable** — Services are replaceable and hold no keys (Replication Contract).
 - K8 Authority: **✓** — Rules as data in the group state: any member, k of n, named members, vouches; every device enforces them.
 - K9 Continuity: **✓** — No owner; a sole founder is just the k = 1 rule, changeable like any other.
-- K10 Concurrent changes: **✓ᵐ** — Measured: concurrent removals of different people both hold with nobody reading along (S4b); mutual removal removes both (S4c2); a removed member's concurrent invitations lapse (S4f); a policy change concurrent with a removal forks and is ended by a policy change on both branches (S4j). The same results with two key protocols. github.com/real-life-org/port-experimente
-- K11 Maturity: **~ᵐ** — Spec converged (Access 0.56, Replication 0.26, Delivery 0.80 in progress); the test bench and the candidate exist; no shipping app yet. trust-protocol.real-life.org
+- K10 Concurrent changes: **✓ᵖ** — Measured: concurrent removals of different people both hold with nobody reading along (S4b); mutual removal removes both (S4c2); a removed member's concurrent invitations lapse (S4f); a policy change concurrent with a removal forks and is ended by a policy change on both branches (S4j). The same results with two key protocols. github.com/real-life-org/port-experimente
+- K11 Maturity: **✗ᵖ** — Spec public and converged (Access 0.56, Replication 0.26, Delivery 0.80 in progress); the group part exists only as a bench prototype (github.com/real-life-org/port-experimente), not as a library others can depend on, and there is no app. The npm package @real-life/trust-protocol covers the trust and encounter layers, not groups. trust-protocol.real-life.org
 
 ## How to add or correct a row
 
